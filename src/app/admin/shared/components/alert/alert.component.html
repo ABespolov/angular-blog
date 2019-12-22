@@ -1,0 +1,11 @@
+<div
+  *ngIf="text"
+  [ngClass]="{
+  'is-success': type === 'success',
+  'is-warning': type === 'warning',
+  'is-danger': type === 'danger'
+  }"
+  class="notification">
+  <button class="delete"></button>
+  <p>{{text}}</p>
+</div>

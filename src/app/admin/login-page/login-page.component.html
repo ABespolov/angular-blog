@@ -1,0 +1,52 @@
+<div class="card">
+  <div class="card-content">
+    <div *ngIf="auth.error$ | async as error" class="notification is-danger">
+      {{error}}
+    </div>
+    <div *ngIf="message" class="notification is-danger">
+      {{message}}
+    </div>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="field">
+        <label class="label">Email</label>
+        <div class="control has-icons-left has-icons-right">
+          <input [ngClass]="{'is-danger': form.get('email').touched && form.get('email').invalid}"
+                 formControlName="email"
+                 class="input" type="email" placeholder="Email">
+          <span class="icon is-small is-left">
+      <i class="fas fa-envelope"></i>
+    </span>
+          <span class="icon is-small is-right">
+      <i class="fas fa-exclamation-triangle"></i>
+    </span>
+        </div>
+        <div *ngIf="form.get('email').touched && form.get('email').invalid">
+          <p *ngIf="form.get('email').errors.required"
+             class="help is-danger">Введите Email</p>
+          <p *ngIf="form.get('email').errors.email"
+             class="help is-danger">Введите корректный Email</p>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Пароль</label>
+        <div class="control has-icons-left has-icons-right">
+          <input [ngClass]="{'is-danger': form.get('password').touched && form.get('password').invalid}"
+                 formControlName="password"
+                 class="input" type="password" placeholder="Пароль">
+          <span class="icon is-small is-left">
+      <i class="fas fa-lock"></i>
+    </span>
+          <span class="icon is-small is-right">
+      <i class="fas fa-check"></i>
+    </span>
+        </div>
+        <div *ngIf="form.get('password').touched && form.get('password').invalid">
+          <p class="help is-danger">Пароль должен быть не менее
+            {{form.get('password').errors.minlength.requiredLength}}
+            символов</p>
+        </div>
+      </div>
+      <button type="submit" class="button is-success" [disabled]="form.invalid || submitted">Войти</button>
+    </form>
+  </div>
+</div>

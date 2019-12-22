@@ -1,0 +1,35 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" routerLink="/">
+      <img src="https://cdn.worldvectorlogo.com/logos/angular-icon.svg">
+      <span>&nbsp;Angular Blog</span>
+    </a>
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div *ngIf="auth.isAuthenticated()" class="navbar-end">
+      <a routerLinkActive="is-active" [routerLink]="['/admin', 'dashboard']" class="navbar-item">
+        Главная
+      </a>
+      <a routerLinkActive="is-active" [routerLink]="['/admin', 'create']" class="navbar-item">
+        Создать
+      </a>
+      <div class="navbar-item">
+        <div class="buttons">
+          <a (click)="logout($event)" class="button is-light">
+            Выйти
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+<app-alert></app-alert>

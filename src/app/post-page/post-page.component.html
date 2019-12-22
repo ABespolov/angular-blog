@@ -1,0 +1,18 @@
+<div *ngIf="post$ | async as post; else loading" class="container">
+  <div class="media-content">
+    <time datetime="2016-1-1">{{post.date | date:'dd.MM.yyyy'}}</time>
+  </div>
+  <h1 class="title">{{post.title}}</h1>
+  <quill-view-html [content]="post.text"></quill-view-html>
+  <br>
+  <p>Автор: <strong>{{post.author}}</strong></p>
+  <br>
+  <button routerLink="/" class="button is-dark is-outlined">На главную</button>
+</div>
+<ng-template #loading>
+  <div class="container">
+    <div class="notification">
+      <progress class="progress is-small is-info" max="100">60%</progress>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,41 @@
+<div class="card">
+  <div class="card-content">
+    <h2>Создание поста</h2>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="field">
+        <label class="label">Название поста:</label>
+        <div class="control">
+          <input [ngClass]="{'is-danger': form.get('title').touched && form.get('title').invalid}"
+                 formControlName="title"
+                 class="input" type="text" placeholder="">
+        </div>
+        <div *ngIf="form.get('title').touched && form.get('title').invalid">
+          <p *ngIf="form.get('title').errors.required"
+             class="help is-danger">Введите название</p>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Текст поста:</label>
+        <quill-editor formControlName="text"></quill-editor>
+      </div>
+      <div class="field">
+        <label class="label">Автор поста:</label>
+        <div class="control">
+          <input [ngClass]="{'is-danger': form.get('author').touched && form.get('author').invalid}"
+                 formControlName="author"
+                 class="input" type="text" placeholder="">
+        </div>
+        <div *ngIf="form.get('author').touched && form.get('author').invalid">
+          <p *ngIf="form.get('author').errors.required"
+             class="help is-danger">Введите автора</p>
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="button is-success"
+        [disabled]="form.invalid"
+      >Создать пост
+      </button>
+    </form>
+  </div>
+</div>

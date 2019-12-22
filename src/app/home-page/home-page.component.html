@@ -1,0 +1,10 @@
+<div *ngIf="posts$ | async as posts; else loading">
+  <app-post *ngFor="let post of posts" [post]="post"></app-post>
+</div>
+<ng-template #loading>
+  <div class="container">
+    <div class="notification">
+      <progress class="progress is-small is-info" max="100">60%</progress>
+    </div>
+  </div>
+</ng-template>
